@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Generated Images</h1>
+    <div class="row">
+        {% for image in images %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.prompt }}">
+                <div class="card-body">
+                    <h6 class="card-title">{{ image.prompt }}</h6>
+                    {% comment %} <a href="{% url 'image_result' image_id=image.id %}" class="btn btn-primary">View Image</a> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

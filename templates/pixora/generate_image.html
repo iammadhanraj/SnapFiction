@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Generate Image{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Generate Image</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Generate</button>
+    </form>
+</div>
+{% endblock %}

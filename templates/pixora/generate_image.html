@@ -3,10 +3,21 @@
 {% block content %}
 <div class="container mt-4">
     <h1 class="text-center">Generate Image</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Generate</button>
-    </form>
+   
+
+    <div class="card text-center">
+        <div class="card-header text-uppercase">
+          Prompt
+        </div>
+        <form method="POST">
+            <div class="card-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" required name="prompt" rows="3"></textarea>
+                    </div>
+            </div>
+        </form>
+                <button type="submit" class="btn btn-primary">Generate</button>
+      </div>
 </div>
 {% endblock %}

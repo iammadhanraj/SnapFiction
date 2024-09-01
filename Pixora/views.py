@@ -19,8 +19,9 @@ def generate_image_view(request):
         if form.is_valid():
             prompt = form.cleaned_data['prompt']
             generated_image = ImageRequest.objects.create(prompt=prompt, status='processing')
+            img_id=generated_image.id
             try:
-                image_path = generate_image(prompt)
+                image_path = generate_image(prompt,img_id)
                 generated_image.image = image_path
                 generated_image.status = 'completed'
                 if request.user.is_authenticated:

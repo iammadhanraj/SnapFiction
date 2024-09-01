@@ -7,9 +7,9 @@ model_id = "CompVis/stable-diffusion-v1-4"
 pipe = StableDiffusionPipeline.from_pretrained(model_id)
 pipe = pipe.to("cpu")
 
-def generate_image(prompt):
+def generate_image(prompt,img_id):
     image = pipe(prompt).images[0]
-    image_filename = f"{prompt.replace(' ', '_')}.png"
+    image_filename = f"{img_id}.png"
     image_path = os.path.join(settings.MEDIA_ROOT, 'generated_images', image_filename)
     os.makedirs(os.path.dirname(image_path), exist_ok=True)
     image.save(image_path)

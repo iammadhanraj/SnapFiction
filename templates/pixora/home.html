@@ -2,26 +2,53 @@
 {% load static %}
 {% block title %}Home{% endblock %}
 {% block content %}
+<style>
+    .truncate-paragraph {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 2; /* Adjust as needed */
+        max-height: 8em; /* 3 lines * line-height */
+    }
+</style>
+
 <div class="container mt-4">
     <h1 class="text-center">Generated Images</h1>
     <div class="row">
         {% for image in images %}
         <div class="col-md-4 mb-4">
-            <div class="card">
+              <div class="card">
                 {% if image.status == "completed" %}
                 <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.prompt }}">
                 {% else %}
                 <img src="{% static 'img/default.jpg' %}" class="card-img-top" alt="{{ image.prompt }}">
                 {% endif %}
                 <div class="card-body">
-                    <h6 class="card-title">{{ image.prompt }}</h6>
-                    {% if image.status == "completed" %}
-                    <span class="badge bg-success">{{ image.status }}</span>
-                    {% else %}
-                    <span class="badge bg-warning text-dark">{{ image.status }}</span>
-                    {% endif %}
+                    <div class='row'>
+                        <div class="col">
+                            Created - {{image.created_at}}
+                          </div>
+                        <div class="col-4">
+                            {% if image.status == "completed" %}
+                            <span class="badge bg-success">{{ image.status }}</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">{{ image.status }}</span>
+                            {% endif %}
+                          </div>
+                    </div>
+                    <hr>
+                  <div class="row my-3">
+                    <div class="truncate-paragraph">
+                        {{ image.prompt }}
+                    </div>
+                  </div>
+                  <div class='row px-3'>
+                    <a href="#" class="btn btn-primary text-right">More Info</a>
+                  </div>
                 </div>
-            </div>
+              </div>
         </div>
         {% endfor %}
     </div>

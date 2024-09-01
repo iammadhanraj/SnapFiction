@@ -13,5 +13,4 @@ def generate_image(prompt,img_id):
     image_path = os.path.join(settings.MEDIA_ROOT, 'generated_images', image_filename)
     os.makedirs(os.path.dirname(image_path), exist_ok=True)
     image.save(image_path)
-    
     return image_path

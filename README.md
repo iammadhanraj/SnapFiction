@@ -23,4 +23,4 @@
 
 ```bash
 git clone https://github.com/iammadhanraj/SnapFiction.git
-cd pixora
+cd SnapFiction
